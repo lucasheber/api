@@ -1,15 +1,16 @@
 services:
   db:
-    image: postgres:latest
-    container_name: my_postgres_db
+    image: postgres:17.4-alpine3.21
+    container_name: postgres_db
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: mydb
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - rock-net
   rock-api:
@@ -19,10 +20,10 @@ services:
     container_name: rock-api
     environment:
       DB_HOST: db
-      DB_PORT: 5432
-      DB_NAME: mydb
-      DB_USER: user
-      DB_PASS: password
+      DB_PORT: ${APP_DB_PORT}
+      DB_NAME: ${APP_DB_NAME}
+      DB_USER: ${APP_DB_USER}
+      DB_PASS: ${APP_DB_PASSWORD}
     ports:
       - "8080:8080"
     depends_on:
