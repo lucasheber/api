@@ -7,13 +7,6 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-// check if the connection is valid
-if (Source\Core\Connect::getInstance()) {
-    echo "<h1>Conectado com sucesso</h1>";
-} else {
-    echo "<h1>Erro ao conectar no banco de dados</h1>";
-}
-
 $request = Laminas\Diactoros\ServerRequestFactory::fromGlobals(
     $_SERVER,
     $_GET,
@@ -28,7 +21,13 @@ $router = new League\Route\Router();
 // map a route
 $router->map('GET', '/', function (ServerRequestInterface $request): ResponseInterface {
     $response = new Laminas\Diactoros\Response();
-    $response->getBody()->write('<h1>Hello, World!</h1>');
+
+    // check if the connection is valid
+    if (Source\Core\Connect::getInstance()) {
+        $response->getBody()->write('<h1>Hello, World! Conectado ao BD com successo!</h1>');
+    } else {
+        $response->getBody()->write('<h1>Ooops... Falha ao conectar ao BD</h1>');
+    }
     return $response;
 });
 
