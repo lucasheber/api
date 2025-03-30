@@ -6,6 +6,8 @@ RUN apt-get update && \
     libzip-dev \
     unzip \
     git \
+    libpq-dev \
+    && docker-php-ext-install pdo_pgsql \
     && docker-php-ext-install zip
 
 # install composer
@@ -17,7 +19,6 @@ WORKDIR /var/www/html
 # copy files
 COPY index.php .
 COPY composer.json .
-COPY composer.lock .
 COPY src/ /var/www/html/src
 
 # install PHP dependencies
