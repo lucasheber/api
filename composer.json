@@ -1,0 +1,25 @@
+{
+    "name": "rock/api",
+    "description": "Simple API to Test Docker",
+    "type": "project",
+    "require": {
+        "league/route": "^6.2",
+        "laminas/laminas-diactoros": "^3.5",
+        "laminas/laminas-httphandlerrunner": "^2.11"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.74"
+    },
+    "autoload": {
+        "psr-4": {
+            "Source\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Lucas Heber",
+            "email": "lucas.heber07@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
