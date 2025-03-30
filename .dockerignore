@@ -1,0 +1,11 @@
+node_modules
+dist
+Dockerfile
+.git
+.dockerignore
+.gitignore
+vendor
+.env.example
+.env
+.idea
+.vscode
