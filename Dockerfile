@@ -25,6 +25,10 @@ COPY src/ /var/www/html/src
 RUN composer install --no-dev --no-scripts --no-progress --prefer-dist
 
 FROM php:8.4-cli-alpine AS production
+
+# Install PostgreSQL extension in the production stage
+RUN apk add --no-cache postgresql-dev && docker-php-ext-install pdo_pgsql
+
 WORKDIR /var/www/html
 
 COPY --from=stage /var/www/html /var/www/html
