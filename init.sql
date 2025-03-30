@@ -1,5 +1,5 @@
 -- Criar usuário restrito para a aplicação
-CREATE USER app_user WITH ENCRYPTED PASSWORD 'password123';
+CREATE USER app_user WITH ENCRYPTED PASSWORD 'sua_senha_forte_aqui';
 
 -- Conceder apenas permissões necessárias ao app_user
 GRANT CONNECT ON DATABASE mydb TO app_user;
