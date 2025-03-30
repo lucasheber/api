@@ -24,9 +24,9 @@ $router->map('GET', '/', function (ServerRequestInterface $request): ResponseInt
 
     // check if the connection is valid
     if (Source\Core\Connect::getInstance()) {
-        $response->getBody()->write('<h1>Hello, World! Conectado ao BD com successo!</h1>');
+        $response->getBody()->write('<h1>Hello, World! You are successfully connected with Dabatase!</h1>');
     } else {
-        $response->getBody()->write('<h1>Ooops... Falha ao conectar ao BD</h1>');
+        $response->getBody()->write('<h1>Ooops... The Database connection is unavaliable</h1>');
     }
     return $response;
 });
